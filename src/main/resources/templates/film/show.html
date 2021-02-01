@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+</head>
+<body>
+<a th:href="'/'">Вернуться на главную страницу</a>
+<br>
+<br>
+<a th:href="'films/top5'">Топ 5 фильмов</a>
+<br>
+<p><a href="/films/add">Добавить фильм в базу</a></p>
+<br>
+<form action="/films/index" method="get">
+    <input name="movieTitle">
+    <button>Поиск по названию фильма</button>
+</form>
+<br>
+<div th:switch="${films}">
+    <h2 th:case="null">No films found!</h2>
+    <div th:case="*">
+        <h2>Список всех фильмов</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Жанр</th>
+                <th>Рейтинг</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="element : ${films}">
+                <td th:text="${element.movieTitle}"></td>
+                <td th:text="${element.genre}"></td>
+                <td th:text="${element.filmRating}"></td>
+                <td><a th:href="@{films/{id}(id=${element.id})}">Подробнее</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

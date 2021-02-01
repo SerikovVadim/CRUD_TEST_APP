@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+</head>
+<body>
+<div th:each="element : ${film}">
+    <table>
+        <tbody>
+        <tr>
+            <th>Название фильма: </th>
+            <td th:text="${element.getMovieTitle()}"></td>
+        </tr>
+        <tr>
+            <th>Жанр: </th>
+            <td th:text="${element.getGenre()}"></td>
+        </tr>
+        <tr>
+            <th>Год выпуска: </th>
+            <td th:text="${element.getProductionYear()}"></td>
+        </tr>
+        <tr>
+            <th>Стоимость фильма: </th>
+            <td th:text="${element.getFilmCost()}"></td>
+        </tr>
+        <tr>
+            <th>Рейтинг фильма: </th>
+            <td th:text="${element.getFilmRating()}"></td>
+        </tr>
+    </table>
+    <br>
+    <a th:href="@{/films/{id}/edit(id = ${element.getId()})}">Редактировать</a>
+    <br>
+    <br>
+
+    <a th:href="'/films'">Вернуть к списку фильмов</a>
+
+</div>
+
+
+</body>
+</html>

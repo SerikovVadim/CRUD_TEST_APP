@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+</head>
+<body>
+
+<h1>Добавление фильма в базу</h1>
+<form th:method="POST" th:action="@{/films/add}" th:object="${film}">
+    <label for="movieTitle">Название фильма: </label>
+    <input type="text" th:field="*{movieTitle}" id="movieTitle">
+    <div style="color:red" th:if="${#fields.hasErrors('movieTitle')}" th:errors="*{movieTitle}">MovieTitle name error</div>
+    <br/>
+    <label for="genre">Жанр: </label>
+    <input type="text" th:field="*{genre}" id="genre">
+    <div style="color:red" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}">Genre error</div>
+    <br/>
+    <label for="productionYear">Год производства: </label>
+    <input type="text" th:field="*{productionYear}" id="productionYear">
+    <div style="color:red" th:if="${#fields.hasErrors('productionYear')}" th:errors="*{productionYear}">ProductionYear error</div>
+    <br/>
+    <label for="filmCost">Бюджет фильма: </label>
+    <input type="text" th:field="*{filmCost}" id="filmCost">
+    <div style="color:red" th:if="${#fields.hasErrors('filmCost')}" th:errors="*{filmCost}">FilmCost error</div>
+    <br>
+    <label for="filmRating">Рейтинг фильма: </label>
+    <input type="text" th:field="*{filmRating}" id="filmRating">
+    <div style="color:red" th:if="${#fields.hasErrors('filmRating')}" th:errors="*{filmRating}">FilmRating error</div>
+    <br>
+    <input type="submit" value="Добавить фильм"/>
+</form>
+
+<br>
+<a th:href="'/films'">Вернуть к списку фильмов</a>
+</body>
+</html>
